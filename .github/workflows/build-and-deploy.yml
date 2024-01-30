@@ -1,0 +1,21 @@
+name: Build and Deploy on Netlify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    name: Pass unit tests
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Run unit tests
+        run: yarn test -- run
