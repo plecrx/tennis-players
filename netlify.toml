@@ -1,6 +1,2 @@
 [dev]
     command = "yarn dev"
-    functions = "lambda"
-
-[build]
-    functions = "lambda"
