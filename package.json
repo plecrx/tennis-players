@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext ts,tsx --fix",
-    "prettier": "prettier --write 'src/**/*.{ts,tsx,js,jsx,json,css,md}'",
+    "prettier": "prettier --write src tests netlify",
     "prepare": "husky install",
     "test": "vitest"
   },
