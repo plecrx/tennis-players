@@ -1,2 +1,7 @@
 [dev]
     command = "yarn dev"
+
+[[redirects]]
+from = "/api/*"
+to = "/.netlify/functions/:splat"
+status = 200
