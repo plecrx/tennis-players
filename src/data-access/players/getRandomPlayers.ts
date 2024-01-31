@@ -5,17 +5,17 @@ export type Dependencies = {
   httpGet: typeof GET
 }
 
-export type GetRandomOpponentsResponse = {
+export type GetRandomPlayersResponse = {
   opponents: {
     player_one: Player
     player_two: Player
   }
 }
-export const createGetRandomOpponents =
+export const createGetRandomPlayers =
   ({ httpGet }: Dependencies) =>
-  async (): Promise<GetRandomOpponentsResponse> => {
+  async (): Promise<GetRandomPlayersResponse> => {
     return await httpGet('/api/players/random')
   }
 
-export const getRandomOpponents: () => Promise<GetRandomOpponentsResponse> =
-  createGetRandomOpponents({ httpGet: GET })
+export const getRandomPlayers: () => Promise<GetRandomPlayersResponse> =
+  createGetRandomPlayers({ httpGet: GET })

@@ -6,7 +6,10 @@ import { Button } from './button.component.tsx'
 import { ChevronRight } from './chevronRight.component.tsx'
 import { ClockIcon } from './clockIcon.component.tsx'
 
-export const MatchCard: FC<{ player: Player }> = ({ player }) => {
+interface IMatchCard {
+  player: Player
+}
+export const MatchCard: FC<IMatchCard> = ({ player }) => {
   const navigate = useNavigate()
 
   const fullName = formatFullname({
@@ -29,7 +32,10 @@ export const MatchCard: FC<{ player: Player }> = ({ player }) => {
   }
 
   return (
-    <div className='flex flex-col rounded bg-neutral-100 border border-neutral-300 p-4 gap-2 min-w-80'>
+    <div
+      key={player.id}
+      className='flex flex-col rounded bg-neutral-100 border border-neutral-300 p-4 gap-2 min-w-80'
+    >
       <section className='flex flex-col'>
         <img
           data-testid='match-card-picture'
@@ -57,7 +63,7 @@ export const MatchCard: FC<{ player: Player }> = ({ player }) => {
         className='flex flex-col p-2 bg-gray-200 text-sm rounded'
       >
         {Object.entries(playerStats).map(([key, value]) => (
-          <li>
+          <li key={key}>
             <span className='capitalize'>{key}:</span>
             <span className='ml-2 font-bold'>
               {formatNumericValue(key, value)}
@@ -72,7 +78,7 @@ export const MatchCard: FC<{ player: Player }> = ({ player }) => {
       >
         <ClockIcon />
         <span className='text-sm text-neutral-400 mx-2'>
-          Total played time:
+          Total played time:{' '}
         </span>
         {formatNumericValue('played_time', player.data.played_time)}
       </section>

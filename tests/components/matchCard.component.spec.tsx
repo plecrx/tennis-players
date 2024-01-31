@@ -39,10 +39,10 @@ describe('Match Card Component', () => {
     const { getByTestId } = wrapper
     const stats = getByTestId('match-card-stats')
 
-    expect(stats).toHaveTextContent('Points:1234')
-    expect(stats).toHaveTextContent('Height:1m75')
-    expect(stats).toHaveTextContent('Weight:75kg')
-    expect(stats).toHaveTextContent('Age:30 ans')
+    expect(stats).toHaveTextContent('points:1234')
+    expect(stats).toHaveTextContent('height:1m75')
+    expect(stats).toHaveTextContent('weight:75kg')
+    expect(stats).toHaveTextContent('age:30 ans')
   })
 
   it('should display total played time', () => {

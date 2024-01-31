@@ -1,3 +1,5 @@
+import { PageLayout } from '../layouts/page.layout.tsx'
+
 export const NotFoundPage = () => {
-  return <>NOT FOUND</>
+  return <PageLayout>NOT FOUND</PageLayout>
 }

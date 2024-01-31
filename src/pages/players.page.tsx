@@ -1,40 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { PlayersMatch } from '../components/match.component.tsx'
-import { getRandomOpponents } from '../features/players/getRandomOpponents.ts'
+import { useRandomOpponents } from '../features/players/useRandomOpponents.ts'
 import { PageLayout } from '../layouts/page.layout.tsx'
-import { Player } from '../types/player.ts'
 
 export const PlayersPage = () => {
-  const [isLoading, setIsLoading] = useState(true)
-  const [randomOpponents, setRandomOpponents] = useState<{
-    player_one: Player
-    player_two: Player
-  } | null>(null)
+  const { opponents, getOpponents } = useRandomOpponents()
 
   useEffect(() => {
-    const fetchOpponents = async () => {
-      const { opponents } = await getRandomOpponents()
-      setRandomOpponents(opponents)
-      setIsLoading(false)
+    if (!opponents) {
+      getOpponents()
     }
-
-    if (!randomOpponents) {
-      fetchOpponents()
-    }
-  })
-
-  const renderContent = () => {
-    if (isLoading) return 'Loading...'
-
-    if (!randomOpponents) return 'An error occurred !'
-
-    return (
-      <PlayersMatch
-        data-testid='random-players-match'
-        opponents={randomOpponents}
-      />
-    )
-  }
+  }, [opponents])
 
   return (
     <PageLayout>
@@ -44,7 +20,12 @@ export const PlayersPage = () => {
       >
         VS
       </span>
-      {renderContent()}
+      {opponents && (
+        <PlayersMatch
+          data-testid='random-players-match'
+          opponents={opponents}
+        />
+      )}
     </PageLayout>
   )
 }

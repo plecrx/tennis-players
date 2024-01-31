@@ -1,8 +1,8 @@
 import {
   createGetPlayerDetails,
   GetPlayerDetailsResponse,
-} from '../../../src/features/players/getPlayerDetails'
-import { Dependencies } from '../../../src/features/players/getPlayers'
+} from '../../../src/data-access/players/getPlayerDetails'
+import { Dependencies } from '../../../src/data-access/players/getPlayers'
 import { Mocks } from '../../utils'
 
 describe('Use player details', () => {

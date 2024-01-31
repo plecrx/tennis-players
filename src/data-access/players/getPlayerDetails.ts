@@ -1,12 +1,11 @@
-import { GET } from '@/utils/get.ts'
+import { GET } from '../../utils/get.ts'
 import { Player } from '../../types/player.ts'
 
 export type Dependencies = {
   httpGet: typeof GET
 }
 
-type PlayerDetailsResponse = Promise<Player>
-
+export type PlayerDetailsResponse = Promise<Player>
 export const createGetPlayerDetails =
   ({ httpGet }: Dependencies) =>
   async (playerId: string): PlayerDetailsResponse => {

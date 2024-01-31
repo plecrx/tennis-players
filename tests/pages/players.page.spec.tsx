@@ -1,12 +1,24 @@
 import { render } from '@testing-library/react'
-import { expect } from 'vitest'
-import { getRandomOpponents } from '../../src/features/players/getRandomOpponents'
+import { expect, vitest } from 'vitest'
+import * as playersModule from '../../src/data-access/players/getRandomPlayers'
 import { PlayersPage } from '../../src/pages'
+
+vitest.mock('../features/players/useRandomOpponents.ts', () => {
+  return {
+    ...vitest.importActual('../features/players/useRandomOpponents.ts'),
+    useRandomOpponents: vitest.fn(),
+  }
+})
 
 describe('Players Page', () => {
   beforeEach(() => {
-    vi.mocked(getRandomOpponents)
-    vitest.spyOn(global, 'fetch')
+    vitest
+      .spyOn(global, 'fetch')
+      .mockReturnValue(Promise.resolve(new Response('{}')))
+  })
+
+  afterEach(() => {
+    vitest.resetAllMocks()
   })
 
   it('should display an app header with EuroStat title', () => {
@@ -24,6 +36,12 @@ describe('Players Page', () => {
   })
 
   it('should load random players on accessing players page', () => {
-    expect(getRandomOpponents).toHaveBeenCalled()
+    vi.useFakeTimers()
+    const getRandomPlayersSpy = vitest.spyOn(playersModule, 'getRandomPlayers')
+
+    render(<PlayersPage />)
+    vitest.runAllTicks()
+
+    expect(getRandomPlayersSpy).toHaveBeenCalled()
   })
 })
