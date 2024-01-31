@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom'
+import { createHashRouter, Navigate, RouteObject } from 'react-router-dom'
 import { NotFoundPage, PlayerDetailsPage, PlayersPage } from '../pages'
 
 const routes: RouteObject[] = [
@@ -7,4 +7,4 @@ const routes: RouteObject[] = [
   { path: '/players/:playerId', element: <PlayerDetailsPage /> },
   { path: '*', element: <NotFoundPage /> },
 ]
-export const router = createBrowserRouter(routes)
+export const router = createHashRouter(routes)
