@@ -1,8 +1,8 @@
 import { render, RenderResult } from '@testing-library/react'
 import { beforeEach, expect } from 'vitest'
 import { MatchCard } from '../../src/components/matchCard.component'
-import { Player } from '../../src/types/player'
 import { MemoryRouter } from 'react-router-dom'
+import { createPlayer } from '../test.utils'
 
 describe('Match Card Component', () => {
   let wrapper: RenderResult
@@ -51,23 +51,4 @@ describe('Match Card Component', () => {
 
     expect(playedTime).toHaveTextContent('Total played time: 10 hours')
   })
-})
-const createPlayer = (playerDetails?: Partial<Player>): Player => ({
-  country: { code: '', picture: '' },
-  data: {
-    age: 30,
-    height: 175,
-    last: {},
-    played_time: 10,
-    points: 1234,
-    rank: 1,
-    weight: 75000,
-  },
-  firstname: 'Jane',
-  id: 123,
-  lastname: 'Doe',
-  picture: 'picture-url',
-  sex: 'F',
-  shortname: '',
-  ...playerDetails,
 })

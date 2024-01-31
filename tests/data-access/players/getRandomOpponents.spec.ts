@@ -3,7 +3,7 @@ import {
   createGetRandomPlayers,
   GetRandomPlayersResponse,
 } from '../../../src/data-access/players/getRandomPlayers'
-import { Mocks } from '../../utils'
+import { Mocks } from '../../test.utils'
 
 describe('Use Random Opponents', () => {
   let mocks: Mocks<Dependencies>

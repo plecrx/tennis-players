@@ -1,13 +1,13 @@
 import {
   createGetPlayerDetails,
-  GetPlayerDetailsResponse,
+  PlayerDetailsResponse,
 } from '../../../src/data-access/players/getPlayerDetails'
 import { Dependencies } from '../../../src/data-access/players/getPlayers'
-import { Mocks } from '../../utils'
+import { Mocks } from '../../test.utils'
 
 describe('Use player details', () => {
   let mocks: Mocks<Dependencies>
-  let getPlayerDetails: (playerId: number) => GetPlayerDetailsResponse
+  let getPlayerDetails: (playerId: string) => PlayerDetailsResponse
 
   beforeEach(() => {
     mocks = { httpGet: vitest.fn() }
@@ -15,7 +15,7 @@ describe('Use player details', () => {
   })
 
   it('should properly call GET', async () => {
-    await getPlayerDetails(2)
+    await getPlayerDetails('2')
 
     expect(mocks.httpGet).toHaveBeenCalledWith(`/api/players/2`)
   })

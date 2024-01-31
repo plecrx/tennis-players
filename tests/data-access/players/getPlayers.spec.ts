@@ -3,7 +3,7 @@ import {
   Dependencies,
   GetPlayersResponse,
 } from '../../../src/data-access/players/getPlayers'
-import { Mocks } from '../../utils'
+import { Mocks } from '../../test.utils'
 
 describe('Use players', () => {
   let mocks: Mocks<Dependencies>

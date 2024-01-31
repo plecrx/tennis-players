@@ -1,47 +1,51 @@
 import { render } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { expect, vitest } from 'vitest'
-import * as playersModule from '../../src/data-access/players/getRandomPlayers'
-import { PlayersPage } from '../../src/pages'
-
-vitest.mock('../features/players/useRandomOpponents.ts', () => {
-  return {
-    ...vitest.importActual('../features/players/useRandomOpponents.ts'),
-    useRandomOpponents: vitest.fn(),
-  }
-})
+import { Dependencies, PlayersPage } from '../../src/pages'
+import { createPlayer, Mocks } from '../test.utils'
 
 describe('Players Page', () => {
-  beforeEach(() => {
-    vitest
-      .spyOn(global, 'fetch')
-      .mockReturnValue(Promise.resolve(new Response('{}')))
-  })
+  let mocks: Mocks<Dependencies>
 
-  afterEach(() => {
-    vitest.resetAllMocks()
+  beforeAll(() => {
+    mocks = {
+      _useRandomOpponents: vitest.fn().mockReturnValue({
+        opponents: { player_one: createPlayer(), player_two: createPlayer() },
+        getOpponents: vitest.fn(),
+      }),
+    }
   })
 
   it('should display an app header with EuroStat title', () => {
-    const { getByTestId } = render(<PlayersPage />)
-    const appTitle = getByTestId('app-header-title')
-
-    expect(appTitle).toHaveTextContent('EuroStat')
+    const { getByTestId } = render(
+      <MemoryRouter>
+        <PlayersPage _useRandomOpponents={mocks._useRandomOpponents} />
+      </MemoryRouter>
+    )
+    expect(getByTestId('app-header-title')).toHaveTextContent('EuroStat')
   })
 
   it('should display a title', () => {
-    const { getByTestId } = render(<PlayersPage />)
-    const pageTitle = getByTestId('players-page-title')
+    const { getByTestId } = render(
+      <MemoryRouter>
+        <PlayersPage _useRandomOpponents={mocks._useRandomOpponents} />
+      </MemoryRouter>
+    )
 
-    expect(pageTitle).toHaveTextContent('VS')
+    expect(getByTestId('players-page-title')).toHaveTextContent('VS')
   })
 
-  it('should load random players on accessing players page', () => {
-    vi.useFakeTimers()
-    const getRandomPlayersSpy = vitest.spyOn(playersModule, 'getRandomPlayers')
+  it('should display no match if opponents not found', () => {
+    mocks._useRandomOpponents?.mockReturnValue({
+      opponents: null,
+      getOpponents: vitest.fn(),
+    })
+    const { getByTestId } = render(
+      <MemoryRouter>
+        <PlayersPage _useRandomOpponents={mocks._useRandomOpponents} />
+      </MemoryRouter>
+    )
 
-    render(<PlayersPage />)
-    vitest.runAllTicks()
-
-    expect(getRandomPlayersSpy).toHaveBeenCalled()
+    expect(getByTestId('players-page-title')).toHaveTextContent('No match')
   })
 })

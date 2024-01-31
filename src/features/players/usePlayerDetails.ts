@@ -14,7 +14,7 @@ export const usePlayerDetails = (playerId?: string) => {
     if (!currentPlayer && playerId !== undefined) {
       getCurrentPlayer(playerId)
     }
-  }, [])
+  }, [currentPlayer, playerId])
 
   return {
     currentPlayer,
