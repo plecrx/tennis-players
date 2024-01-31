@@ -16,5 +16,5 @@ const sortById = (players: Player[]) => {
 
 export const config: Config = {
   path: '/api/players',
-  preferStatic: true
+  preferStatic: true,
 }
