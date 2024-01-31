@@ -29,4 +29,5 @@ const getRandomIndex = (arrLength: number) => {
 
 export const config: Config = {
   path: '/api/players/random',
+  preferStatic: true
 }

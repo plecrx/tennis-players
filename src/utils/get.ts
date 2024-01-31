@@ -4,6 +4,7 @@ export const GET = async <T = Record<string, never>>(
 ): Promise<T> => {
   const response = await httpClient(url, {
     method: 'Get',
+    mode: 'cors',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',

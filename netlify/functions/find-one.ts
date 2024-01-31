@@ -22,4 +22,5 @@ const findPlayerById = (
 
 export const config: Config = {
   path: '/api/players/:id',
+  preferStatic: true
 }
