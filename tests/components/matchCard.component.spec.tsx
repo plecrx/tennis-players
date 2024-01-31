@@ -51,16 +51,6 @@ describe('Match Card Component', () => {
 
     expect(playedTime).toHaveTextContent('Total played time: 10 hours')
   })
-
-  /*   it('should redirect to details page', async () => {
-    const { getByTestId } = wrapper
-    const buttonDetails = getByTestId('link-details')
-
-    await act( async () => fireEvent.click(buttonDetails, {button: 0}))
-
-    expect(buttonDetails).toHaveTextContent('See details')
-    expect(screen.getByText('PLAYER DETAILS')).toBeInTheDocument()
-  }) */
 })
 const createPlayer = (playerDetails?: Partial<Player>): Player => ({
   country: { code: '', picture: '' },

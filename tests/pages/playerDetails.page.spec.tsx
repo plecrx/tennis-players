@@ -33,17 +33,4 @@ describe('Player Details Page', () => {
 
     expect(pageTitle).toHaveTextContent('User Informations')
   })
-
-  /*   it('should load current player on accessing player details page', () => {
-    vi.useFakeTimers()
-    const getRandomPlayersSpy = vitest.spyOn(
-      playerDetailsModule,
-      'getPlayerDetails'
-    )
-
-    render(<PlayerDetailsPage />)
-    vitest.runAllTicks()
-
-    expect(getRandomPlayersSpy).toHaveBeenCalled()
-  }) */
 })
