@@ -14,7 +14,7 @@ export type GetRandomPlayersResponse = {
 export const createGetRandomPlayers =
   ({ httpGet }: Dependencies) =>
   async (): Promise<GetRandomPlayersResponse> => {
-    return await httpGet('/api/players/random')
+    return await httpGet('/.netlify/functions/random')
   }
 
 export const getRandomPlayers: () => Promise<GetRandomPlayersResponse> =

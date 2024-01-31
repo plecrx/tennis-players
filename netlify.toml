@@ -1,6 +1,9 @@
 [dev]
     command = "yarn dev"
 
+[functions]
+directory = "functions"
+
 [[redirects]]
 from = "/api/*"
 to = "/.netlify/functions/:splat"

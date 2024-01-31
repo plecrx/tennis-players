@@ -1,16 +1,16 @@
-import type { Config, Context } from '@netlify/functions'
-import { Player } from '../../src/types/player'
-import { GET } from '../../src/utils/get'
-export default async (_: Request, context: Context) => {
+import type {Handler} from '@netlify/functions'
+import { Player } from '../src/types/player'
+import { GET } from '../src/utils/get'
+export const handler: Handler = async (_, context) => {
   const api_url = process.env.VITE_API_URL || ''
   const { players } = await GET<Record<'players', Player[]>>(api_url)
 
   const { player_one, player_two } = selectRandomPlayers(players)
 
-  return new Response(
-    JSON.stringify({ opponents: { player_one, player_two } }),
-    { status: 200 }
-  )
+  return {
+    body: JSON.stringify({ opponents: { player_one, player_two } }),
+    statusCode: 200,
+  }
 }
 
 const selectRandomPlayers = (players: Player[]): Record<string, Player> => {
@@ -25,9 +25,4 @@ const selectRandomPlayers = (players: Player[]): Record<string, Player> => {
 
 const getRandomIndex = (arrLength: number) => {
   return Math.floor(Math.random() * arrLength)
-}
-
-export const config: Config = {
-  path: '/api/players/random',
-  preferStatic: true,
 }

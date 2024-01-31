@@ -9,7 +9,7 @@ export type PlayerDetailsResponse = Promise<Player>
 export const createGetPlayerDetails =
   ({ httpGet }: Dependencies) =>
   async (playerId: string): PlayerDetailsResponse => {
-    return await httpGet(`/api/players/${playerId}`)
+    return await httpGet(`/.netlify/functions/find-one/${playerId}`)
   }
 
 export const getPlayerDetails = createGetPlayerDetails({ httpGet: GET })
