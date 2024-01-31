@@ -1,17 +1,11 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { PlayersMatch } from '../components/match.component.tsx'
 import { useRandomOpponents } from '../features/players/useRandomOpponents.ts'
 import { PageLayout } from '../layouts/page.layout.tsx'
 
 export const PlayersPage = () => {
-  const { opponents, getOpponents } = useRandomOpponents()
+  const { opponents } = useRandomOpponents()
   const title = useMemo(() => (opponents ? 'VS' : 'No match'), [opponents])
-
-  useEffect(() => {
-    if (!opponents) {
-      getOpponents()
-    }
-  }, [opponents])
 
   return (
     <PageLayout>
@@ -21,7 +15,7 @@ export const PlayersPage = () => {
       >
         {title}
       </span>
-      {opponents && (
+      {opponents !== null && (
         <PlayersMatch
           data-testid='random-players-match'
           opponents={opponents}

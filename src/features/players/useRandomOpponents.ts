@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   getRandomPlayers,
   GetRandomPlayersResponse,
@@ -13,6 +13,12 @@ export const useRandomOpponents = () => {
     const { opponents: opponentsApi } = await getRandomPlayers()
     setOpponents(opponentsApi)
   }
+
+  useEffect(() => {
+    if (!opponents) {
+      getOpponents()
+    }
+  }, [opponents])
 
   return {
     opponents,

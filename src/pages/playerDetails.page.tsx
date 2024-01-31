@@ -1,18 +1,11 @@
-import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { usePlayerDetails } from '../features/players/usePlayerDetails.ts'
 import { PageLayout } from '../layouts/page.layout.tsx'
 import { formatFullname, formatNumericValue } from '../utils/formats.ts'
 
 export const PlayerDetailsPage = () => {
-  const { getCurrentPlayer, currentPlayer } = usePlayerDetails()
   const { playerId } = useParams()
-
-  useEffect(() => {
-    if (!currentPlayer && playerId !== undefined) {
-      getCurrentPlayer(playerId)
-    }
-  }, [])
+  const { currentPlayer } = usePlayerDetails(playerId)
 
   const fullName = formatFullname({
     lastName: currentPlayer?.lastname || '',
