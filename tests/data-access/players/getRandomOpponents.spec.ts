@@ -17,6 +17,6 @@ describe('Use Random Opponents', () => {
   it('should properly call GET', async () => {
     await getRandomOpponents()
 
-    expect(mocks.httpGet).toHaveBeenCalledWith(`/api/players/random`)
+    expect(mocks.httpGet).toHaveBeenCalledWith(`/.netlify/functions/random`)
   })
 })

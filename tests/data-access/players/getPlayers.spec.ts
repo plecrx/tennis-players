@@ -17,6 +17,6 @@ describe('Use players', () => {
   it('should properly call GET', async () => {
     await getPlayers()
 
-    expect(mocks.httpGet).toHaveBeenCalledWith(`/api/players`)
+    expect(mocks.httpGet).toHaveBeenCalledWith(`/.netlify/functions/find-all`)
   })
 })

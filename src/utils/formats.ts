@@ -1,11 +1,11 @@
 type FormatFunction = (value: number) => string
 export const formatFullname = ({
   firstname,
-  lastName,
+  lastname,
 }: {
   firstname: string
-  lastName: string
-}) => `${firstname} ${lastName}`
+  lastname: string
+}) => `${firstname} ${lastname}`
 
 const formatHeight = (heightValue: number) => {
   const heightInMeters = heightValue / 100
