@@ -9,7 +9,7 @@ export const PlayerDetailsPage = () => {
   const { playerId } = useParams()
 
   useEffect(() => {
-    if (!currentPlayer && playerId) {
+    if (!currentPlayer && playerId !== undefined) {
       getCurrentPlayer(playerId)
     }
   }, [])

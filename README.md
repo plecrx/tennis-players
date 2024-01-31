@@ -1,4 +1,5 @@
 # Tennis players App
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2df3847a-9fc9-4bb5-b2bd-e08973046d23/deploy-status)](https://app.netlify.com/sites/tennis-players-plecrx/deploys)
 
 A React application with serverless functions for fetching random players, hosted on Netlify.
 
