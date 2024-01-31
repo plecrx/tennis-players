@@ -5,4 +5,5 @@
 from = "/api/*"
 to = "/.netlify/functions/:splat"
 status = 200
-headers = { Access-Control-Allow-Origin = "*" }
+force = true
+headers = {X-From = "Netlify"}
