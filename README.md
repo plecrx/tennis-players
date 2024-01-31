@@ -48,8 +48,7 @@ netlify dev
 
 -   `.github/` : The deployment pipeline supported by env variable
 -   `.husky/` : scripts which lint and format the staged files before committing
--   `netlify/`
-    -   `functions/` : The default root folder that Netlify uses to deploy serverless functions
+-   `functions/` : The root folder that Netlify uses to deploy serverless functions
 -   `src/` : The application source code
     -   `assets/` : The static files (fonts, images, ...)
     -   `components/` : The components which will be used in pages
