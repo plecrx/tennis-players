@@ -3,12 +3,12 @@ import { PlayersMatch } from '../components/match.component.tsx'
 import { useRandomOpponents } from '../features/players/useRandomOpponents.ts'
 import { PageLayout } from '../layouts/page.layout.tsx'
 
-export type Dependencies = {
+export type PlayersPageDependencies = {
   _useRandomOpponents?: typeof useRandomOpponents
 }
 export const PlayersPage = ({
   _useRandomOpponents = useRandomOpponents,
-}: Dependencies) => {
+}: PlayersPageDependencies) => {
   const { opponents } = _useRandomOpponents()
   const title = useMemo(
     () => (opponents !== null ? 'VS' : 'No match'),

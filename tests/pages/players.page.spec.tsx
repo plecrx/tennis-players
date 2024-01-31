@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { expect, vitest } from 'vitest'
-import { Dependencies, PlayersPage } from '../../src/pages'
+import { PlayersPageDependencies, PlayersPage } from '../../src/pages'
 import { createPlayer, Mocks } from '../test.utils'
 
 describe('Players Page', () => {
-  let mocks: Mocks<Dependencies>
+  let mocks: Mocks<PlayersPageDependencies>
 
   beforeAll(() => {
     mocks = {

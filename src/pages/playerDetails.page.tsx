@@ -3,9 +3,14 @@ import { usePlayerDetails } from '../features/players/usePlayerDetails.ts'
 import { PageLayout } from '../layouts/page.layout.tsx'
 import { formatFullname, formatNumericValue } from '../utils/formats.ts'
 
-export const PlayerDetailsPage = () => {
+export type PlayerDetailsPageDependencies = {
+  _usePlayerDetails?: typeof usePlayerDetails
+}
+export const PlayerDetailsPage = ({
+  _usePlayerDetails = usePlayerDetails,
+}: PlayerDetailsPageDependencies) => {
   const { playerId } = useParams()
-  const { currentPlayer } = usePlayerDetails(playerId)
+  const { currentPlayer } = _usePlayerDetails(playerId)
 
   const fullName = formatFullname({
     lastName: currentPlayer?.lastname || '',
@@ -50,7 +55,10 @@ export const PlayerDetailsPage = () => {
             <section>
               <ul>
                 {Object.entries(currentPlayer.data).map(([key, value]) => (
-                  <li className='flex justify-between'>
+                  <li
+                    key={`${playerId}-${key}`}
+                    className='flex justify-between'
+                  >
                     <span className='font-bold capitalize text-lg'>{key}:</span>
                     <span>{formatNumericValue(key, value)}</span>
                   </li>
