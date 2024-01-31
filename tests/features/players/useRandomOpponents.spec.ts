@@ -1,13 +1,13 @@
-import { Dependencies } from '../../../src/features/players/usePlayers'
+import { Dependencies } from '../../../src/features/players/getPlayers'
 import {
   createGetRandomOpponents,
   GetRandomOpponentsResponse,
-} from '../../../src/features/players/useRandomOpponents'
+} from '../../../src/features/players/getRandomOpponents'
 import { Mocks } from '../../utils'
 
 describe('Use Random Opponents', () => {
   let mocks: Mocks<Dependencies>
-  let getRandomOpponents: () => GetRandomOpponentsResponse
+  let getRandomOpponents: () => Promise<GetRandomOpponentsResponse>
 
   beforeEach(() => {
     mocks = { httpGet: vitest.fn() }

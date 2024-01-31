@@ -16,5 +16,6 @@ export type Player = {
     height: number
     age: number
     last: Record<number, number>
+    played_time: number
   }
 }

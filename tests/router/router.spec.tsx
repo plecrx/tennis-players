@@ -1,6 +1,5 @@
 import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom'
 import { beforeEach } from 'vitest'
-import { NotFoundPage, PlayerDetailsPage, PlayersPage } from '../../src/pages'
 
 interface CustomRoute {
   route: {
@@ -18,9 +17,9 @@ describe('Router', () => {
   beforeEach(() => {
     mockRoutes = [
       { path: '/', element: <Navigate to='/players' /> },
-      { path: '/players', element: <PlayersPage /> },
-      { path: '/players/:playerId', element: <PlayerDetailsPage /> },
-      { path: '*', element: <NotFoundPage /> },
+      { path: '/players' },
+      { path: '/players/:playerId' },
+      { path: '*' },
     ]
     router = createBrowserRouter(mockRoutes)
   })

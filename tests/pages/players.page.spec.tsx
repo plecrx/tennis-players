@@ -1,19 +1,29 @@
-import {render} from "@testing-library/react";
-import {expect} from "vitest";
-import {PlayersPage} from "../../src/pages";
+import { render } from '@testing-library/react'
+import { expect } from 'vitest'
+import { getRandomOpponents } from '../../src/features/players/getRandomOpponents'
+import { PlayersPage } from '../../src/pages'
 
 describe('Players Page', () => {
-	it('should display an app header with EuroStat title', () => {
-		const { getByTestId } = render(<PlayersPage/>)
-		const appTitle = getByTestId('app-header-title')
+  beforeEach(() => {
+    vi.mocked(getRandomOpponents)
+    vitest.spyOn(global, 'fetch')
+  })
 
-		expect(appTitle).to.toHaveTextContent("EuroStat")
-	});
+  it('should display an app header with EuroStat title', () => {
+    const { getByTestId } = render(<PlayersPage />)
+    const appTitle = getByTestId('app-header-title')
 
-	it('should display a title', () => {
-		const { getByTestId } = render(<PlayersPage/>)
-		const pageTitle = getByTestId('players-page-title')
+    expect(appTitle).toHaveTextContent('EuroStat')
+  })
 
-		expect(pageTitle).to.toHaveTextContent("VS")
-	});
-});
+  it('should display a title', () => {
+    const { getByTestId } = render(<PlayersPage />)
+    const pageTitle = getByTestId('players-page-title')
+
+    expect(pageTitle).toHaveTextContent('VS')
+  })
+
+  it('should load random players on accessing players page', () => {
+    expect(getRandomOpponents).toHaveBeenCalled()
+  })
+})

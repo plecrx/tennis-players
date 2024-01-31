@@ -12,6 +12,6 @@ export const createGetPlayers =
     return await httpGet('/api/players')
   }
 
-export const usePlayers: () => GetPlayersResponse = createGetPlayers({
+export const getPlayers: () => GetPlayersResponse = createGetPlayers({
   httpGet: GET,
 })

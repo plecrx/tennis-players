@@ -9,8 +9,8 @@ type PlayerDetailsResponse = Promise<Player>
 
 export const createGetPlayerDetails =
   ({ httpGet }: Dependencies) =>
-  async (playerId: number): PlayerDetailsResponse => {
+  async (playerId: string): PlayerDetailsResponse => {
     return await httpGet(`/api/players/${playerId}`)
   }
 
-export const usePlayerDetails = createGetPlayerDetails({ httpGet: GET })
+export const getPlayerDetails = createGetPlayerDetails({ httpGet: GET })

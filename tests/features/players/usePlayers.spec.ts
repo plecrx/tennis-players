@@ -2,7 +2,7 @@ import {
   createGetPlayers,
   Dependencies,
   GetPlayersResponse,
-} from '../../../src/features/players/usePlayers'
+} from '../../../src/features/players/getPlayers'
 import { Mocks } from '../../utils'
 
 describe('Use players', () => {
